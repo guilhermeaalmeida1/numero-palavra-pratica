@@ -6,11 +6,11 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestWith;
 use PHPUnit\Framework\TestCase;
 use src\Happy\Happy;
-use src\Multiplos\Multiplos;
+use src\Multiple\Multiple;
 use src\PalavraNumero\PalavraNumero;
 
 #[CoversClass(PalavraNumero::class)]
-#[CoversClass(Multiplos::class)]
+#[CoversClass(Multiple::class)]
 #[CoversClass(Happy::class)]
 class PalavraNumeroTest extends TestCase
 {

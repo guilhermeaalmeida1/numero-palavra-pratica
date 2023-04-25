@@ -3,7 +3,7 @@
 namespace src\PalavraNumero;
 
 use src\Happy\Happy;
-use src\Multiplos\Multiplos;
+use src\Multiple\Multiple;
 
 class PalavraNumero
 {
@@ -93,7 +93,7 @@ class PalavraNumero
 
     public function multiplos(int $numero, int $numeroMultiplo): bool
     {
-        return (new Multiplos())->verificaSeNumeroEMultiplo($numero, $numeroMultiplo);
+        return (new Multiple())->isNumberAMultiple($numero, $numeroMultiplo);
     }
 
     public function felizes()
