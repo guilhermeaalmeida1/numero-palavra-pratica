@@ -3,53 +3,47 @@
 namespace Tests\FelizesTest;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\TestWith;
 use PHPUnit\Framework\TestCase;
-use src\Felizes\Felizes;
+use src\Happy\Happy;
 
-#[CoversClass(Felizes::class)]
+#[CoversClass(Happy::class)]
 class FelizesTest extends TestCase
 {
 
-    public function testSomatoriaIgualUm()
+    public function testSumEqualsOne()
     {
-        $numerosFelizes = new Felizes(1);
-
-        $this->assertEquals($numerosFelizes->somaResultado(), 1);
+        $this->assertEquals((new Happy(1))->sumResult(), 1);
     }
 
-    public function testSomatoriaIgualUmComNumeroDois()
+    public function testSumEqualsOneWithNumberTwo()
     {
-        $numerosFelizes = new Felizes(2);
-
-        $this->assertEquals($numerosFelizes->somaResultado(), false);
+        $this->assertEquals((new Happy(2))->sumResult(), false);
     }
 
-    public function testSomatoriaIgualUmComNumeroTres()
+    public function testSumEqualsOneWithNumberThree()
     {
-        $numerosFelizes = new Felizes(3);
-
-        $this->assertEquals($numerosFelizes->somaResultado(), false);
+        $this->assertEquals((new Happy(3))->sumResult(), false);
     }
 
-    public function testSomatoriaIgualUmComNumeroDez()
+    public function testSumEqualsOneWithNumberTen()
     {
-        $numerosFelizes = new Felizes(1);
-
-        $this->assertEquals($numerosFelizes->somaResultado(), 1);
+        $this->assertEquals((new Happy(1))->sumResult(), 1);
     }
 
-    public function testNumeroElevado()
-    {
-        $numerosFelizes = new Felizes(1);
 
-        $this->assertEquals($numerosFelizes->elevaNumero(2), 4);
+    #[TestWith([2, 4])]
+    #[TestWith([3, 9])]
+    #[TestWith([4, 16])]
+    #[TestWith([5, 25])]
+    public function testPowNumber($number, $answer)
+    {
+        $this->assertEquals((new Happy(1))->powNumber($number), $answer);
     }
 
-    public function testVazio()
+    public function testEmpty()
     {
-        $numerosFelizes = new Felizes();
-
-        $this->assertFalse($numerosFelizes->somaResultado());
+        $this->assertFalse((new Happy())->sumResult());
     }
 
 }

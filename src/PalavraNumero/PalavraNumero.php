@@ -2,7 +2,7 @@
 
 namespace src\PalavraNumero;
 
-use src\Felizes\Felizes;
+use src\Happy\Happy;
 use src\Multiplos\Multiplos;
 
 class PalavraNumero
@@ -98,6 +98,6 @@ class PalavraNumero
 
     public function felizes()
     {
-        return (new Felizes($this->gerarNumeroComAsPalavra()))->somaResultado();
+        return (new Happy($this->gerarNumeroComAsPalavra()))->sumResult();
     }
 }

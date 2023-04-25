@@ -5,13 +5,13 @@ namespace Tests\PalavraNumero;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestWith;
 use PHPUnit\Framework\TestCase;
-use src\Felizes\Felizes;
+use src\Happy\Happy;
 use src\Multiplos\Multiplos;
 use src\PalavraNumero\PalavraNumero;
 
 #[CoversClass(PalavraNumero::class)]
 #[CoversClass(Multiplos::class)]
-#[CoversClass(Felizes::class)]
+#[CoversClass(Happy::class)]
 class PalavraNumeroTest extends TestCase
 {
     #[TestWith(["a", 71])]
