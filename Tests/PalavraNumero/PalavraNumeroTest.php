@@ -7,49 +7,49 @@ use PHPUnit\Framework\Attributes\TestWith;
 use PHPUnit\Framework\TestCase;
 use src\Happy\Happy;
 use src\Multiple\Multiple;
-use src\PalavraNumero\PalavraNumero;
+use src\WordToNumber\WordToNumber;
 
-#[CoversClass(PalavraNumero::class)]
+#[CoversClass(WordToNumber::class)]
 #[CoversClass(Multiple::class)]
 #[CoversClass(Happy::class)]
 class PalavraNumeroTest extends TestCase
 {
     #[TestWith(["a", 71])]
     #[TestWith(["A", 71])]
-    public function testDicionarioExiste($dadaPalavra)
+    public function testDicionaryExist($word)
     {
-        $palavraEmNumero = (new PalavraNumero())->DeParaLetraEmNumeros();
+        $letterToNumber = (new WordToNumber())->fromLetterToNumber();
 
-        $this->assertCount(52, $palavraEmNumero);
-        $this->assertTrue(array_key_exists($dadaPalavra, $palavraEmNumero));
-        $this->assertTrue(array_key_exists($dadaPalavra, $palavraEmNumero));
+        $this->assertCount(52, $letterToNumber);
+        $this->assertTrue(array_key_exists($word, $letterToNumber));
+        $this->assertTrue(array_key_exists($word, $letterToNumber));
     }
 
 
     #[TestWith(["Palavra", 97])]
     #[TestWith(["PALAVRA", 253])]
-    public function testGerarNumeroComPalavra($dadaPalavra, $total)
+    public function testGenerateNUmberWithWord($word, $total)
     {
-        $this->assertEquals((new PalavraNumero($dadaPalavra))->gerarNumeroComAsPalavra(), $total);
+        $this->assertEquals((new WordToNumber($word))->genereteNumberFromWord(), $total);
     }
 
     #[TestWith(["palavra", 3, false])]
     #[TestWith(["palavra", 5, false])]
     #[TestWith(["c", 3, true])]
     #[TestWith(["e", 5, true])]
-    public function testNumerosMultiplos($dadaPalavra, $numeroMultiplo, $multiplosSimNao)
+    public function testNumerosMultiplos($word, $multipleNumber, $multipleYesNo)
     {
-        $numeroDaPalavra = (new PalavraNumero($dadaPalavra))->gerarNumeroComAsPalavra();
+        $numeroDaPalavra = (new WordToNumber($word))->genereteNumberFromWord();
 
-        $this->assertEquals((new PalavraNumero($dadaPalavra))->multiplos($numeroDaPalavra, $numeroMultiplo), $multiplosSimNao);
+        $this->assertEquals((new WordToNumber($word))->multiple($numeroDaPalavra, $multipleNumber), $multipleYesNo);
     }
 
     #[TestWith(["ai", 1])]
     #[TestWith(["e", false])]
 
-    public function testNumerosFelizes($dadaPalavra, $multiplosSimNao)
+    public function testHappyNumber($word, $multipleYesNo)
     {
-        $this->assertEquals((new PalavraNumero($dadaPalavra))->felizes(), $multiplosSimNao);
+        $this->assertEquals((new WordToNumber($word))->happy(), $multipleYesNo);
     }
 
 

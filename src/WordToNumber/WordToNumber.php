@@ -1,19 +1,19 @@
 <?php
 
-namespace src\PalavraNumero;
+namespace src\WordToNumber;
 
 use src\Happy\Happy;
 use src\Multiple\Multiple;
 
-class PalavraNumero
+class WordToNumber
 {
-    public int $numeroGeradoComPalavra = 0;
+    public int $generetedNumberWithWord = 0;
 
-    public function __construct(public string $palavra = '')
+    public function __construct(public string $word = '')
     {
     }
 
-    public function DeParaLetraEmNumeros(): array
+    public function fromLetterToNumber(): array
     {
         return [
             "a" => 1,
@@ -71,33 +71,30 @@ class PalavraNumero
         ];
     }
 
-    public function pegarNumeroDoDicionario($param): int
+    public function takeNumberOfDictionary($param): int
     {
-        return $this->DeParaLetraEmNumeros()[$param];
+        return $this->fromLetterToNumber()[$param];
     }
 
-    /**
-     * @return int
-     */
-    public function gerarNumeroComAsPalavra(): int
+    public function genereteNumberFromWord(): int
     {
-        $palavraArray = str_split($this->palavra);
+        $wordFromArray = str_split($this->word);
 
-        foreach ($palavraArray as $item) {
-            if (array_key_exists($item, $this->DeParaLetraEmNumeros())) {
-                $this->numeroGeradoComPalavra += $this->pegarNumeroDoDicionario($item);
+        foreach ($wordFromArray as $item) {
+            if (array_key_exists($item, $this->fromLetterToNumber())) {
+                $this->generetedNumberWithWord += $this->takeNumberOfDictionary($item);
             }
         }
-        return $this->numeroGeradoComPalavra;
+        return $this->generetedNumberWithWord;
     }
 
-    public function multiplos(int $numero, int $numeroMultiplo): bool
+    public function multiple(int $number, int $multipleNumber): bool
     {
-        return (new Multiple())->isNumberAMultiple($numero, $numeroMultiplo);
+        return (new Multiple())->isNumberAMultiple($number, $multipleNumber);
     }
 
-    public function felizes()
+    public function happy()
     {
-        return (new Happy($this->gerarNumeroComAsPalavra()))->sumResult();
+        return (new Happy($this->genereteNumberFromWord()))->sumResult();
     }
 }
